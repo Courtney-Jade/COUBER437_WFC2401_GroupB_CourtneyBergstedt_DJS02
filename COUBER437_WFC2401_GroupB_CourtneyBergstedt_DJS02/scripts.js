@@ -1,60 +1,54 @@
-// Select the form element using the data-form attribute
-const form = document.querySelector('[data-form]');
+const form = document.querySelector("[data-form]");
+const result = document.querySelector("[data-result]");
 
-// Select the result element using the data-result attribute
-const result = document.querySelector('[data-result]');
+// Resolved Story: Initial State
+result.innerText = "No calculation performed";
 
-// Select the dividend input element by its ID
-const dividendInput = document.querySelector('#dividend');
-
-// Select the divider input element by its ID
-const dividerInput = document.querySelector('#divider');
-
-// Add an event listener to the form for the 'submit' event
-form.addEventListener('submit', (event) => {
-  // Prevent the default form submission behavior
+form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  // Get the trimmed values from the dividend and divider input fields
-  const dividend = dividendInput.value.trim();
-  const divider = dividerInput.value.trim();
-
-  // Check if either input field is empty
-  if (dividend === '' || divider === '') {
-    // If either input is empty, display an error message and return
-    result.innerText =
-      'Division not performed. Both values are required in inputs. Try again.';
+  const dividendInput = event.target.querySelector('input[name="dividend"]');
+  const dividerInput = event.target.querySelector('input[name="divider"]');
+  
+  const dividend = parseInt(dividendInput.value);
+  const divider = parseInt(dividerInput.value);
+  
+  // Unresolved Story: Validation when values are missing
+  if (isNaN(dividend) || isNaN(divider)) {
+    handleError("Both values are required in inputs. Try again");
+    return;
+  }
+  
+  // Unresolved Story: An invalid division should log an error in the console
+  if (divider === 0) {
+    handleError("Invalid number provided. Try again");
+    console.error("Error: Division by zero");
+    return;
+  }
+  
+  // Unresolved Story: Providing anything that is not a number should crash the program
+  if (!Number.isInteger(dividend) || !Number.isInteger(divider)) {
+    handleError("Invalid number provided. Try again");
+    console.error("Error: Non-numeric input");
     return;
   }
 
-  // Convert the dividend and divider strings to numbers
-  const dividendNum = parseInt(dividend, 10);
-  const dividerNum = parseInt(divider, 10);
-
-  // Check if either input couldn't be converted to a valid number
-  if (Number.isNaN(dividendNum) || Number.isNaN(dividerNum)) {
-    // If either input is not a valid number, log a critical error and throw an exception
-    const criticalError = new Error(
-      'Something critical went wrong. Please reload the page',
-    );
-    console.error('Critical error:', criticalError.stack);
-    throw criticalError;
+  // Whole Number Division
+  if (dividend % divider === 0) {
+    result.innerText = dividend / divider;
+  } else {
+    // Unresolved Story: Dividing numbers result in a decimal number
+    result.innerText = "Division not resulting in a whole number.";
   }
-
-  // Check if the divider is zero
-  if (dividerNum === 0) {
-    // If the divider is zero, display an error message and log an error
-    result.innerText =
-      'Division not performed. Invalid number provided. Try again';
-    console.error(
-      'Division not performed. Try again',
-      new Error('Invalid number provided.').stack,
-    );
-    return;
-  }
-
-  // Perform the division and display the result (using Math.floor to round down)
-  result.innerText = Math.floor(dividendNum / dividerNum);
 });
+
+function handleError(errorMessage) {
+  result.innerText = `Error: ${errorMessage}`;
+  console.error(errorMessage);
+}
+
+
+
+
 
 
