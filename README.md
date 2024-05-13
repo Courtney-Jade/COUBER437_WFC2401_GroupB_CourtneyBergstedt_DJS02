@@ -6,8 +6,8 @@ The original code consisted of:
 
 1. Declaration of given parameters such as initial velocity, acceleration, time, initial distance, initial fuel, and fuel burn rate.
 2. A function calcNewVel was declared after parameter declaration, but it was assigned after being used, causing a reference error.
-3. Incorrect calculations were made directly based on the given parameters without considering units or potential errors.
-4. Output statements printed the results without considering the need for proper unit conversions or error handling.
+3. There were incorrect calculations made directly based on the given parameters without considering units or potential errors.
+4. The output statements printed results without considering the need for proper unit conversions or error handling.
 
 ## Changes Made:
 1. Descriptive variable names were used to enhance code clarity.
