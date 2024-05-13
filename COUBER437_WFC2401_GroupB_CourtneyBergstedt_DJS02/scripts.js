@@ -1,8 +1,8 @@
-const form = document.querySelector("[data-form]");
-const result = document.querySelector("[data-result]");
+const form = document.querySelector("[data-form]"); //assigns to the variable form
+const result = document.querySelector("[data-result]"); // assigns it to the variable result
 
 // Resolved Story: Initial State
-result.innerText = "No calculation performed";
+result.innerText = "No calculation performed"; ///this sets up the initial state and will indicate that no calculation has been performed
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -27,7 +27,7 @@ form.addEventListener("submit", (event) => {
   }
   
   // Unresolved Story: Providing anything that is not a number should crash the program
-  if (!Number.isInteger(dividend) || !Number.isInteger(divider)) {
+  if (!Number.isInteger(dividend) || !Number.isInteger(divider)) { //this line parses the value of the dividend input field as an integer
     handleError("Invalid number provided. Try again");
     console.error("Error: Non-numeric input");
     return;
@@ -41,11 +41,14 @@ form.addEventListener("submit", (event) => {
     result.innerText = "Division not resulting in a whole number.";
   }
 });
+//The dividend and divider are diveded and if the results are a whole number it will be displayed otherwise a message will indicate that the division doesn't result in a whole number.
 
 function handleError(errorMessage) {
   result.innerText = `Error: ${errorMessage}`;
   console.error(errorMessage);
 }
+
+// If any errors occur during the validation or calculation process the function will be called to display an error message
 
 
 
