@@ -41,7 +41,7 @@ form.addEventListener("submit", (event) => {
     result.innerText = "Division not resulting in a whole number.";
   }
 });
-//The dividend and divider are diveded and if the results are a whole number it will be displayed otherwise a message will indicate that the division doesn't result in a whole number.
+//The dividend and divider are divided and if the results are a whole number it will be displayed otherwise a message will indicate that the division doesn't result in a whole number.
 
 function handleError(errorMessage) {
   result.innerText = `Error: ${errorMessage}`;
