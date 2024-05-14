@@ -1,7 +1,8 @@
 # Simple Division Calculator
 This code provides a basic division calculator implemented in JavaScript. It allows users to input two numbers and calculates their division. The code includes error handling mechanisms to handle various scenarios like division by zero, missing values, and non-numeric inputs.
 
-## Origanal Code:
+## Original Code:
+The original code provided a basic division calculator without thorough input validation and error handling.
 
 ## Expected Results:
 Users should be able to input two numbers and perform division using the calculator. Validations should prevent division by zero, missing values, and non-numeric inputs. The result should be displayed accurately.
